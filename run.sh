@@ -16,7 +16,7 @@ if [ "${AUTHORIZED_KEYS}" != "**None**" ]; then
             echo "$x" >> /user/.ssh/authorized_keys
         fi
     done
-else if [ "${AUTHORIZED_KEYS}" == "**REMOVE**" ]; then
+elif [ "${AUTHORIZED_KEYS}" == "**REMOVE**" ]; then
     echo "=> REMOVING authorized keys file!"
     rm /user/.ssh/authorized_keys
 else
