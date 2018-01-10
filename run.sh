@@ -4,7 +4,7 @@ if [ "${AUTHORIZED_KEYS}" != "**None**" ]; then
     mkdir -p /user/.ssh
     chmod 700 /user/.ssh
     touch /user/.ssh/authorized_keys
-    chmod 600 /user/.ssh/authorized_keys
+    chmod 644 /user/.ssh/authorized_keys
     IFS=$'\n'
     arr=$(echo ${AUTHORIZED_KEYS} | tr "," "\n")
     for x in $arr
@@ -16,6 +16,9 @@ if [ "${AUTHORIZED_KEYS}" != "**None**" ]; then
             echo "$x" >> /user/.ssh/authorized_keys
         fi
     done
+else if [ "${AUTHORIZED_KEYS}" == "**REMOVE**" ]; then
+    echo "=> REMOVING authorized keys file!"
+    rm /user/.ssh/authorized_keys
 else
     echo "ERROR: No authorized keys found in \$AUTHORIZED_KEYS"
     exit 1
